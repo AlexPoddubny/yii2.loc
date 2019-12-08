@@ -6,6 +6,7 @@
 	
 	use app\controllers\AppController;
 	use app\models\Category;
+	use Yii;
 	use yii\base\Widget;
 	
 	class MenuWidget
@@ -27,9 +28,17 @@
 		
 		public function run()
 		{
-			$this->data = Category::find()->indexBy('id')->asArray()->all();
-			$this->tree = $this->getTree();
-			$this->menuHtml = $this->getMenuHtml($this->tree);
+			//get cache
+			$menu = Yii::$app->cache->get('menu');
+			if ($menu) {
+				$this->menuHtml = $menu;
+			} else {
+				$this->data = Category::find()->indexBy('id')->asArray()->all();
+				$this->tree = $this->getTree();
+				$this->menuHtml = $this->getMenuHtml($this->tree);
+				//set cache
+				Yii::$app->cache->set('menu', $this->menuHtml, 60);
+			}
 			//echo AppController::debug($this->tree);
 			return $this->menuHtml;
 		}
