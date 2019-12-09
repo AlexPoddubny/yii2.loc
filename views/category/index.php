@@ -4,6 +4,7 @@
 	
 	$this->title = 'My Yii Application';
 	
+	use app\widgets\MenuWidget;
 	use yii\helpers\Html; ?>
 
 <section id="slider"><!--slider-->
@@ -78,7 +79,7 @@
 				<div class="left-sidebar">
 					<h2>Category</h2>
 					<ul class="catalog category-products">
-						<?= \app\widgets\MenuWidget::widget(['tpl' => 'menu']) ?>
+						<?= MenuWidget::widget(['tpl' => 'menu']) ?>
 					</ul>
 					<div class="brands_products"><!--brands_products-->
 						<h2>Brands</h2>
