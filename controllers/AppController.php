@@ -11,6 +11,6 @@
 	{
 		public static function debug($arr)
 		{
-			return '<pre>' . print_r($arr, true) . '</pre>';
+			echo '<pre>' . print_r($arr, true) . '</pre>';
 		}
 	}
