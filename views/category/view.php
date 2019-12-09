@@ -2,6 +2,7 @@
 	
 	use app\widgets\MenuWidget;
 	use yii\helpers\Html;
+	use yii\widgets\LinkPager;
 
 ?>
 <section id="advertisement">
@@ -91,17 +92,23 @@
 						<div class="clearfix"></div>
 					<?php endif; ?>
 					<?php endforeach;?>
-						<?php else:?>
+					<div class="clearfix"></div>
+					<?php
+						echo LinkPager::widget([
+							'pagination' => $pages,
+						]);
+					?>
+					<?php else:?>
 						<h2>No Items in this category</h2>
 					<?php endif; ?>
 				</div><!--features_items-->
 				<div class="clearfix"></div>
-				<ul class="pagination">
-					<li class="active"><a href="">1</a></li>
-					<li><a href="">2</a></li>
-					<li><a href="">3</a></li>
-					<li><a href="">&raquo;</a></li>
-				</ul>
+<!--				<ul class="pagination">-->
+<!--					<li class="active"><a href="">1</a></li>-->
+<!--					<li><a href="">2</a></li>-->
+<!--					<li><a href="">3</a></li>-->
+<!--					<li><a href="">&raquo;</a></li>-->
+<!--				</ul>-->
 			</div>
 		</div>
 	</div>
