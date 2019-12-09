@@ -66,7 +66,9 @@
 				<div class="row">
 					<div class="col-md-4 clearfix">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="/images/home/logo.png" alt="" /></a>
+							<a href="<?= Url::home()?>">
+								<?= Html::img('@web/images/home/logo.png', ['alt' => 'E-SHOPPER'])?>
+							</a>
 						</div>
 						<div class="btn-group pull-right clearfix">
 							<div class="btn-group">
@@ -121,7 +123,8 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="<?= Url::to(['/']) ?>" class="active">Home</a></li>
+								<li><a href="<?= Url::home() ?>"
+								       class="active">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>

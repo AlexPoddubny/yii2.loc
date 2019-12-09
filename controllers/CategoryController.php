@@ -4,6 +4,7 @@
 	namespace app\controllers;
 	
 	
+	use app\models\Category;
 	use app\models\Product;
 	use Yii;
 	
@@ -16,7 +17,7 @@
 				->where(['hit' => '1'])
 				->limit(6)
 				->all();
-//			echo AppController::debug($hits);
+			$this->setMeta('E-SHOPPER');
 			return $this->render('index', compact('hits'));
 		}
 		
@@ -28,6 +29,12 @@
 					->where(['category_id' => $id])
 					->all();
 			}
-			return $this->render('view', compact('products'));
+			$category = Category::findOne($id);
+			$this->setMeta(
+				'E-SHOPPER | ' . $category->name,
+				$category->keywords,
+				$category->description
+			);
+			return $this->render('view', compact('products', 'category'));
 		}
 	}
