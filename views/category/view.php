@@ -1,6 +1,7 @@
 <?php
 	
 	use app\widgets\MenuWidget;
+	use yii\helpers\Html;
 
 ?>
 <section id="advertisement">
@@ -51,24 +52,31 @@
 			
 			<div class="col-sm-9 padding-right">
 				<div class="features_items"><!--features_items-->
-					<h2 class="title text-center">Features Items</h2>
+					<h2 class="title text-center">Category Items</h2>
 					<?php if (!empty($products)):?>
+					<?php $i = 0; foreach ($products as $product):?>
 					<div class="col-sm-4">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<img src="/images/shop/product12.jpg" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
+									<?= Html::img("@web/images/products/{$product->img}", ['alt' => $product->name])?>
+									<h2>$<?= $product->price?></h2>
+									<p><?= $product->name?></p>
 									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
-								<div class="product-overlay">
-									<div class="overlay-content">
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-								</div>
+<!--								<div class="product-overlay">-->
+<!--									<div class="overlay-content">-->
+<!--										<h2>$56</h2>-->
+<!--										<p>Easy Polo Black Edition</p>-->
+<!--										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+<!--									</div>-->
+<!--								</div>-->
+								<?php if ($product->new == '1') : ?>
+									<?= Html::img("@web/images/home/new.png", ['class' => 'new', 'alt' => 'New!!!']) ?>
+								<?php endif; ?>
+								<?php if ($product->sale == '1') : ?>
+									<?= Html::img("@web/images/home/sale.png", ['class' => 'new', 'alt' => 'SALE!!!']) ?>
+								<?php endif; ?>
 							</div>
 							<div class="choose">
 								<ul class="nav nav-pills nav-justified">
@@ -78,17 +86,22 @@
 							</div>
 						</div>
 					</div>
+					<?php $i++; ?>
+					<?php if ($i % 3 == 0):?>
+						<div class="clearfix"></div>
+					<?php endif; ?>
+					<?php endforeach;?>
 						<?php else:?>
 						<h2>No Items in this category</h2>
 					<?php endif; ?>
-					
-					<ul class="pagination">
-						<li class="active"><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
-						<li><a href="">&raquo;</a></li>
-					</ul>
 				</div><!--features_items-->
+				<div class="clearfix"></div>
+				<ul class="pagination">
+					<li class="active"><a href="">1</a></li>
+					<li><a href="">2</a></li>
+					<li><a href="">3</a></li>
+					<li><a href="">&raquo;</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>

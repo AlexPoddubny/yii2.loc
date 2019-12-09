@@ -133,12 +133,11 @@
 <!--									</div>-->
 <!--								</div>-->
 								<?php if ($hit->new == '1') : ?>
-								<?= Html::img("@web/images/home/new.png", ['class' => 'new', 'alt' => 'New!!!']) ?>
+									<?= Html::img("@web/images/home/new.png", ['class' => 'new', 'alt' => 'New!!!']) ?>
 								<?php endif; ?>
 								<?php if ($hit->sale == '1') : ?>
-								<?= Html::img("@web/images/home/sale.png", ['class' => 'new', 'alt' => 'SALE!!!']) ?>
+									<?= Html::img("@web/images/home/sale.png", ['class' => 'new', 'alt' => 'SALE!!!']) ?>
 								<?php endif; ?>
-								
 							</div>
 							<div class="choose">
 								<ul class="nav nav-pills nav-justified">

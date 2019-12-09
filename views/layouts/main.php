@@ -7,6 +7,7 @@
 	use yii\helpers\Html;
 	use yii\bootstrap\Nav;
 	use yii\bootstrap\NavBar;
+	use yii\helpers\Url;
 	use yii\widgets\Breadcrumbs;
 	use app\assets\AppAsset;
 	use app\assets\ltAppAsset;
@@ -120,7 +121,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="<?= \yii\helpers\Url::to(['/']) ?>" class="active">Home</a></li>
+								<li><a href="<?= Url::to(['/']) ?>" class="active">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
