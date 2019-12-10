@@ -14,20 +14,25 @@
 	{
 		public function actionIndex()
 		{
-			$hits = Product::find()
+			$query = Product::find()
 				->where(['hit' => '1'])
-				->limit(6)
+				->limit(6);
+			$pages = new Pagination([
+				'totalCount' => $query->count(),
+				'pageSize' => 6,
+				'forcePageParam' => false,
+				'pageSizeParam' => false
+			]);
+			$hits = $query->offset($pages->offset)
+				->limit($pages->limit)
 				->all();
 			$this->setMeta('E-SHOPPER');
-			return $this->render('index', compact('hits'));
+			return $this->render('index', compact('hits', 'pages'));
 		}
 		
 		public function actionView()
 		{
 			$id = Yii::$app->request->get('id');
-//			$products = Product::find()
-//				->where(['category_id' => $id])
-//				->all();
 			$query = Product::find()
 				->where(['category_id' => $id]);
 			$pages = new Pagination([

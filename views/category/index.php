@@ -5,7 +5,8 @@
 //	$this->title = 'My Yii Application';
 	
 	use app\widgets\MenuWidget;
-	use yii\helpers\Html; ?>
+	use yii\helpers\Html;
+	use yii\widgets\LinkPager; ?>
 
 <section id="slider"><!--slider-->
 	<div class="container">
@@ -115,7 +116,7 @@
 				<?php if (!empty($hits)) : ?>
 				<div class="features_items"><!--features_items-->
 					<h2 class="title text-center">Features Items</h2>
-					<?php foreach ($hits as $hit) :?>
+					<?php $i = 0; foreach ($hits as $hit) :?>
 					<div class="col-sm-4">
 						<div class="product-image-wrapper">
 							<div class="single-products">
@@ -147,7 +148,17 @@
 							</div>
 						</div>
 					</div>
+					<?php $i++; ?>
+					<?php if ($i % 3 == 0):?>
+						<div class="clearfix"></div>
+					<?php endif; ?>
 					<?php endforeach; ?>
+					<div class="clearfix"></div>
+					<?php
+						echo LinkPager::widget([
+							'pagination' => $pages,
+						]);
+					?>
 				<?php endif; ?>
 				</div><!--features_items-->
 				
