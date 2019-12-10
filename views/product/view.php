@@ -1,19 +1,21 @@
 <?php
 	
-	use app\widgets\MenuWidget;
+	use yii\helpers\Html;
+	use yii\helpers\Url;
 
 ?>
 <section>
 	<div class="container">
 		<div class="row">
-			<?php
-				include __DIR__ . '/../leftsidebar.php';
-			?>
+			<?php include __DIR__ . '/../leftsidebar.php'; ?>
 			<div class="col-sm-9 padding-right">
 				<div class="product-details"><!--product-details-->
 					<div class="col-sm-5">
 						<div class="view-product">
-							<img src="/images/product-details/1.jpg" alt="" />
+							<?= Html::img(
+									"@web/images/products/{$product->img}",
+									['alt' => $product->name]
+							)?>
 							<h3>ZOOM</h3>
 						</div>
 						<div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -50,28 +52,47 @@
 					</div>
 					<div class="col-sm-7">
 						<div class="product-information"><!--/product-information-->
-							<img src="/images/product-details/new.jpg" class="newarrival" alt="" />
-							<h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-							<p>Web ID: 1089772</p>
+							<?php if ($product->new == '1'){
+								echo Html::img(
+									"@web/images/product-details/new.jpg",
+									['class' => 'newarrival',
+										'alt' => 'New!']
+								);}?>
+							<?php if ($product->sale == '1'){
+								echo Html::img(
+									"@web/images/product-details/new.jpg",
+									['class' => 'newarrival',
+										'alt' => 'SALE!']
+								);}?>
+							<h2><?=$product->name?></h2>
+							<p>Web ID: <?=$product->id?>></p>
 							<img src="/images/product-details/rating.png" alt="" />
 							<span>
-									<span>US $59</span>
-									<label>Quantity:</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
-								</span>
-							<p><b>Availability:</b> In Stock</p>
-							<p><b>Condition:</b> New</p>
-							<p><b>Brand:</b> E-SHOPPER</p>
+								<span>US<?=$product->price?></span>
+								<label>Quantity:</label>
+								<input type="text" value="1" />
+								<button type="button" class="btn btn-fefault cart">
+									<i class="fa fa-shopping-cart"></i>
+									Add to cart
+								</button>
+							</span>
+<!--							<p><b>Availability:</b> In Stock</p>-->
+<!--							<p><b>Condition:</b> New</p>-->
+							<p>
+								<b>Brand:</b> <?=$product->category->id?>
+								<a href="<?= Url::to([
+										'category/view',
+										'id' => $product->category->id
+								])?>">
+									<?=$product->category->name?>
+								</a>
+							</p>
 							<a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 						</div><!--/product-information-->
 					</div>
 				</div><!--/product-details-->
-				
-				<div class="category-tab shop-details-tab"><!--category-tab-->
+					<!--category-tab-->
+<!--				<div class="category-tab shop-details-tab">
 					<div class="col-sm-12">
 						<ul class="nav nav-tabs">
 							<li><a href="#details" data-toggle="tab">Details</a></li>
@@ -259,7 +280,8 @@
 						</div>
 					
 					</div>
-				</div><!--/category-tab-->
+				</div>-->
+<!--/category-tab-->
 				
 				<div class="recommended_items"><!--recommended_items-->
 					<h2 class="title text-center">recommended items</h2>
