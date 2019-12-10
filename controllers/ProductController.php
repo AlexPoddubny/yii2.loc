@@ -15,10 +15,6 @@
 		{
 			$id = Yii::$app->request->get('id');
 			$product = Product::findOne($id);
-//				->with('category')
-//				->where(['id' => $id])
-//				->limit(1)
-//				->one();
 			return $this->render('view', compact('product'));
 		}
 	}

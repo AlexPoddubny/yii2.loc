@@ -65,7 +65,7 @@
 										'alt' => 'SALE!']
 								);}?>
 							<h2><?=$product->name?></h2>
-							<p>Web ID: <?=$product->id?>></p>
+							<p>Web ID: <?=$product->id?></p>
 							<img src="/images/product-details/rating.png" alt="" />
 							<span>
 								<span>US<?=$product->price?></span>
@@ -79,7 +79,7 @@
 <!--							<p><b>Availability:</b> In Stock</p>-->
 <!--							<p><b>Condition:</b> New</p>-->
 							<p>
-								<b>Brand:</b> <?=$product->category->id?>
+								<b>Brand:</b>
 								<a href="<?= Url::to([
 										'category/view',
 										'id' => $product->category->id

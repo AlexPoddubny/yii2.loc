@@ -2,9 +2,6 @@
 	
 	/* @var $this yii\web\View */
 	
-//	$this->title = 'My Yii Application';
-	
-	use app\widgets\MenuWidget;
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 	use yii\widgets\LinkPager; ?>
