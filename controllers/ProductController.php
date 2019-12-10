@@ -13,8 +13,14 @@
 	{
 		public function actionView()
 		{
-			$id = Yii::$app->request->get('id');
+			$id = Yii::$app
+				->request
+				->get('id');
 			$product = Product::findOne($id);
-			return $this->render('view', compact('product'));
+			$hits = Product::find()
+				->where(['hit' => '1'])
+				->limit(6)
+				->all();
+			return $this->render('view', compact('product', 'hits'));
 		}
 	}
