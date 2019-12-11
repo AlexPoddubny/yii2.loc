@@ -147,7 +147,10 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<form method="get" action="<?=Url::to(['category/search'])?>">
+								<input type="text" placeholder="Search"
+								       name="search"/>
+							</form>
 						</div>
 					</div>
 				</div>

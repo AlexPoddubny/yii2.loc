@@ -34,9 +34,8 @@
 			return $this->render('index', compact('hits', 'pages'));
 		}
 		
-		public function actionView()
+		public function actionView($id)
 		{
-			$id = Yii::$app->request->get('id');
 			$category = Category::findOne($id);
 			if ($category === null){
 				throw new HttpException(404, 'Category cannot be found');
@@ -58,5 +57,24 @@
 				$category->description
 			);
 			return $this->render('view', compact('products', 'pages', 'category'));
+		}
+		
+		public function actionSearch($search)
+		{
+			$this->setMeta('Search: ' . $search);
+			if (!$search){
+				return $this->render('search', compact('search'));
+			}
+			$query = Product::find()->where(['like', 'name', trim($search)]);
+			$pages = new Pagination([
+				'totalCount' => $query->count(),
+				'pageSize' => 3,
+				'forcePageParam' => false,
+				'pageSizeParam' => false
+			]);
+			$products = $query->offset($pages->offset)
+				->limit($pages->limit)
+				->all();
+			return $this->render('search', compact('products', 'pages', 'search'));
 		}
 	}
