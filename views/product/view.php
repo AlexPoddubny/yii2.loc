@@ -87,7 +87,7 @@
 									<?=$product->category->name?>
 								</a>
 							</p>
-							<a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+							<p><?=$product->content?></p>
 						</div><!--/product-information-->
 					</div>
 				</div><!--/product-details-->
@@ -289,23 +289,33 @@
 					<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner">
 							<?php $i = 0; foreach ($hits as $hit):?>
-							<?php if ($i % 3):?>
-							<div class="item<?php if ($i == 0):?>active<?php endif; ?>">
+							<?php if ($i % 3 == 0):?>
+							<div class="item<?php if ($i == 0) echo " active"?>">
 							<?php endif;?>
 								<div class="col-sm-4">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="/images/home/recommend1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
+												<?= Html::img(
+													"@web/images/products/{$hit->img}",
+													['alt' => $hit->name]
+												)?>
+												<h2>$<?=$hit->price?></h2>
+												<p>
+													<a href="<?= Url::to([
+														'product/view',
+														'id' => $hit->id
+													])?>">
+														<?=$hit->name?>
+													</a>
+												</p>
 												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 											</div>
 										</div>
 									</div>
 								</div>
-							<?php $i++ ?>
-							<?php if ($i % 3 || $i == (count($hits) - 1)):?>
+							<?php $i++;
+								if ($i % 3 == 0 || $i == (count($hits))):?>
 							</div>
 							<?php endif;?>
 							<?php endforeach;?>
