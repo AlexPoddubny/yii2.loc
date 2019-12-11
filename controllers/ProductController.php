@@ -6,6 +6,7 @@
 	
 	use app\models\Product;
 	use Yii;
+	use yii\web\HttpException;
 	
 	class ProductController
 		extends AppController
@@ -16,6 +17,9 @@
 				->request
 				->get('id');
 			$product = Product::findOne($id);
+			if ($product === null){
+				throw new HttpException(404, 'Item cannot be found');
+			}
 			$hits = Product::find()
 				->where(['hit' => '1'])
 				->limit(6)

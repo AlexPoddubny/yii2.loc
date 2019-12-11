@@ -8,6 +8,7 @@
 	use app\models\Product;
 	use Yii;
 	use yii\data\Pagination;
+	use yii\web\HttpException;
 	
 	class CategoryController
 		extends AppController
@@ -26,6 +27,9 @@
 			$hits = $query->offset($pages->offset)
 				->limit($pages->limit)
 				->all();
+			if ($hits === null){
+				throw new HttpException(404, 'Item cannot be found');
+			}
 			$this->setMeta('E-SHOPPER');
 			return $this->render('index', compact('hits', 'pages'));
 		}
@@ -33,6 +37,10 @@
 		public function actionView()
 		{
 			$id = Yii::$app->request->get('id');
+			$category = Category::findOne($id);
+			if ($category === null){
+				throw new HttpException(404, 'Category cannot be found');
+			}
 			$query = Product::find()
 				->where(['category_id' => $id]);
 			$pages = new Pagination([
@@ -44,7 +52,6 @@
 			$products = $query->offset($pages->offset)
 				->limit($pages->limit)
 				->all();
-			$category = Category::findOne($id);
 			$this->setMeta(
 				'E-SHOPPER | ' . $category->name,
 				$category->keywords,
