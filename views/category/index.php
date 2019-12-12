@@ -96,7 +96,13 @@
 											<?= $hit->name?>
 										</a>
 									</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+									<a href="<?= Url::to([
+										'cart/add',
+										'id' => $hit->id
+									])?>" class="btn btn-default add-to-cart"
+							            data-id="<?=$hit->id?>">
+										<i class="fa fa-shopping-cart"></i>Add to cart
+									</a>
 								</div>
 <!--								<div class="product-overlay">-->
 <!--									<div class="overlay-content">-->
