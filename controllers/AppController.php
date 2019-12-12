@@ -14,10 +14,10 @@
 			echo '<pre>' . print_r($arr, true) . '</pre>';
 		}
 		
-		public function consoleDump($var)
+		public static function consoleDump($var)
 		{
 			$str = json_encode(print_r($var, true));
-			echo '<script>console.log(' . $str . ');</script>';
+			echo '<script>console.group(\'Var_dump\');console.log(' . $str . ');console.groupEnd();</script>';
 		}
 		
 		protected function setMeta(
