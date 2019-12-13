@@ -70,7 +70,7 @@
 							<span>
 								<span>US<?=$product->price?></span>
 								<label>Quantity:</label>
-								<input type="text" value="1" />
+								<input type="number" min=0 value="1" />
 								<button type="button" class="btn btn-fefault cart">
 									<i class="fa fa-shopping-cart"></i>
 									Add to cart
