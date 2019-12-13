@@ -19,7 +19,7 @@
 				<tr>
 					<td>
 						<?= Html::img("@web/images/products/{$item['img']}",
-							['height' => 100])?>
+							['height' => 50])?>
 					</td>
 					<td><?=$item['name']?></td>
 					<td><?=$item['qty']?></td>
@@ -32,12 +32,14 @@
 				</tr>
 			<?php endforeach;?>
 				<tr>
-					<td colspan="4">Total:</td>
+					<td colspan="2">Total:</td>
 					<td><?=$session['cart.qty']?></td>
+					<td colspan="2"></td>
 				</tr>
 				<tr>
-					<td colspan="4">Cost:</td>
+					<td colspan="3">Cost:</td>
 					<td><?=$session['cart.sum']?></td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>
