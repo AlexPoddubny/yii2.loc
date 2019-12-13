@@ -26,6 +26,7 @@
 					<td><?=$item['price']?></td>
 					<td>
 						<span class="glyphicon glyphicon-remove text-danger del-item"
+						      data-id="<?=$id?>"
 						      aria-hidden="true"></span>
 					</td>
 				</tr>

@@ -29,4 +29,15 @@
 				? $_SESSION['cart.sum'] + $qty * $product->price
 				: $qty * $product->price;
 		}
+		
+		public function recalc($id)
+		{
+			if (!isset($_SESSION['cart'][$id])){
+				return false;
+			}
+			$_SESSION['cart.qty'] -= $_SESSION['cart'][$id]['qty'];
+			$_SESSION['cart.sum'] -= $_SESSION['cart'][$id]['qty'] *
+				$_SESSION['cart'][$id]['price'];
+			unset($_SESSION['cart'][$id]);
+		}
 	}
