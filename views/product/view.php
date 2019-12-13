@@ -70,11 +70,12 @@
 							<span>
 								<span>US<?=$product->price?></span>
 								<label>Quantity:</label>
-								<input type="number" min=0 value="1" />
-								<button type="button" class="btn btn-fefault cart">
+								<input type="number" min="0" value="1" id="qty"/>
+								<a class="btn btn-default cart add-to-cart"
+									data-id="<?=$product->id?>">
 									<i class="fa fa-shopping-cart"></i>
 									Add to cart
-								</button>
+								</a>
 							</span>
 <!--							<p><b>Availability:</b> In Stock</p>-->
 <!--							<p><b>Condition:</b> New</p>-->
