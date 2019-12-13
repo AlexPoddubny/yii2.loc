@@ -54,4 +54,9 @@
 			$this->layout = false;
 			return $this->render('cart-modal', compact('session'));
 		}
+		
+		public function actionView()
+		{
+			return $this->render('view');
+		}
 	}

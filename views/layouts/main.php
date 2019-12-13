@@ -329,7 +329,7 @@
 		'header' => 'Shopping cart',
 		'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
                      <button type="button" class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
-                     <button type="button" class="btn btn-success">Confirm order</button>'
+                     <a href="' . Url::to(['cart/view']) . '" type="button" class="btn btn-success">Confirm order</a>'
 	]);
 	Modal::end();
 ?>
