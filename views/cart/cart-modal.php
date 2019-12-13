@@ -18,7 +18,8 @@
 			<?php foreach ($session['cart'] as $id => $item) : ?>
 				<tr>
 					<td>
-						<?= Html::img("@web/images/products/{$item['img']}")?>
+						<?= Html::img("@web/images/products/{$item['img']}",
+							['height' => 100])?>
 					</td>
 					<td><?=$item['name']?></td>
 					<td><?=$item['qty']?></td>

@@ -4,6 +4,7 @@
 	/* @var $content string */
 	
 	use app\widgets\Alert;
+	use yii\bootstrap\Modal;
 	use yii\helpers\Html;
 	use yii\bootstrap\Nav;
 	use yii\bootstrap\NavBar;
@@ -317,7 +318,17 @@
 		</div>
 		
 	</footer><!--/Footer-->
-
+<?php
+	Modal::begin([
+		'id' => 'cart',
+		'size' => 'modal-lg',
+		'header' => 'Shopping cart',
+		'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
+                     <button type="button" class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+                     <button type="button" class="btn btn-success">Make order</button>'
+	]);
+	Modal::end();
+?>
 
 <?php $this->endBody() ?>
 </body>
