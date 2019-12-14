@@ -31,8 +31,7 @@ function getCart(){
     return false;
 }
 
-$('#cart .modal-body').on('click', '.del-item', function () {
-    var id = $(this).data('id');
+function delItem(id) {
     $.ajax({
         url: '/cart/del-item',
         data: {id: id},
@@ -47,6 +46,11 @@ $('#cart .modal-body').on('click', '.del-item', function () {
             alert('Error!');
         }
     });
+}
+
+$('#cart .modal-body').on('click', '.del-item', function(){
+    var id = $(this).data('id');
+    delItem(id);
 });
 
 

@@ -57,6 +57,9 @@
 		
 		public function actionView()
 		{
-			return $this->render('view');
+			$session = Yii::$app->session;
+			$session->open();
+			$this->setMeta('Shopping Cart');
+			return $this->render('view', compact('session'));
 		}
 	}
