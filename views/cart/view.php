@@ -17,6 +17,22 @@
 					include __DIR__ . '/cart-modal.php';
 				?>
 				<hr>
+				<?php if (Yii::$app->session->hasFlash('success')) : ?>
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<?= Yii::$app->session->getFlash('success'); ?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				<?php endif; ?>
+				<?php if (Yii::$app->session->hasFlash('error')) : ?>
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<?= Yii::$app->session->getFlash('error'); ?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				<?php endif; ?>
 				<?php if (!empty($session['cart'])): ?>
 					<?php $form = ActiveForm::begin();?>
 						<?= $form->field($order, 'name');?>
