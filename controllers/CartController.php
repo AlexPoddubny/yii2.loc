@@ -6,6 +6,7 @@
 	
 	use app\models\Cart;
 	use app\models\Order;
+	use app\models\OrderItems;
 	use app\models\Product;
 	use Yii;
 	
@@ -63,7 +64,33 @@
 			$this->setMeta('Shopping Cart');
 			$order = new Order();
 			if ($order->load(Yii::$app->request->post())){
+				$order->qty = $session['cart.qty'];
+				$order->sum = $session['cart.sum'];
+				if ($order->save()){
+					$this->saveOrderItems($session['cart'], $order->id);
+					Yii::$app->session->setFlash('success', 'Order is placed');
+					$session->remove('cart');
+					$session->remove('cart.qty');
+					$session->remove('cart.sum');
+					return $this->refresh();
+				} else {
+					Yii::$app->session->setFlash('error', 'Order is not placed');
+				}
 			}
 			return $this->render('view', compact('session', 'order'));
+		}
+		
+		protected function saveOrderItems($items, $order_id)
+		{
+			foreach ($items as $id => $item){
+				$order_item = new OrderItems();
+				$order_item->order_id = $order_id;
+				$order_item->product_id = $id;
+				$order_item->name = $item['name'];
+				$order_item->qty_item = $item['qty'];
+				$order_item->price = $item['price'];
+				$order_item->sum_item = $item['price'] * $item['qty'];
+				$order_item->save();
+			}
 		}
 	}
