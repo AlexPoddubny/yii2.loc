@@ -14,11 +14,6 @@ function showCart(cart){
     $('#cart').modal();
 }
 
-function showOrder(cart){
-    $('#order').html(cart);
-    $('#order').load();
-}
-
 function getCart(){
     $.ajax({
         url: '/cart/show',
@@ -64,7 +59,7 @@ $('#order').on('click', '.del-item', function(){
             if (!res){
                 alert('Error!');
             }
-            showOrder(res);
+            window.location.replace('/cart/view');
         },
         error: function () {
             alert('Error!');
