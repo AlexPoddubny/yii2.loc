@@ -1,5 +1,7 @@
 <?php
 	use yii\helpers\Html;
+	use yii\widgets\ActiveForm;
+
 ?>
 <section>
 	<div class="container">
@@ -14,6 +16,16 @@
 				<?php
 					include __DIR__ . '/cart-modal.php';
 				?>
+				<hr>
+				<?php if (!empty($session['cart'])): ?>
+					<?php $form = ActiveForm::begin();?>
+						<?= $form->field($order, 'name');?>
+						<?= $form->field($order, 'email');?>
+						<?= $form->field($order, 'phone');?>
+						<?= $form->field($order, 'address');?>
+						<?= Html::submitButton('Create order', ['class' => 'btn btn-success'])?>
+					<?php ActiveForm::end();?>
+				<?php endif;?>
 			</div>
 		</div>
 	</div>

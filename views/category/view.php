@@ -40,7 +40,8 @@
 									<a href="<?=Url::to([
 											'cart/add',
 											'id' => $product->id
-									])?>" class="btn btn-default add-to-cart">
+									])?>" class="btn btn-default add-to-cart"
+									    data-id="<?=$product->id?>">
 										<i class="fa fa-shopping-cart"></i>Add to cart
 									</a>
 								</div>

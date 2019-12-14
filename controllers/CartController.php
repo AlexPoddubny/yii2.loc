@@ -5,6 +5,7 @@
 	
 	
 	use app\models\Cart;
+	use app\models\Order;
 	use app\models\Product;
 	use Yii;
 	
@@ -60,6 +61,9 @@
 			$session = Yii::$app->session;
 			$session->open();
 			$this->setMeta('Shopping Cart');
-			return $this->render('view', compact('session'));
+			$order = new Order();
+			if ($order->load(Yii::$app->request->post())){
+			}
+			return $this->render('view', compact('session', 'order'));
 		}
 	}

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "order".
@@ -18,7 +19,7 @@ use Yii;
  * @property string $phone
  * @property string $address
  */
-class Order extends \yii\db\ActiveRecord
+class Order extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -34,11 +35,11 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'updated_at', 'qty', 'sum', 'name', 'email', 'phone', 'address'], 'required'],
+            [['name', 'email', 'phone', 'address'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['qty'], 'integer'],
             [['sum'], 'number'],
-            [['status'], 'string'],
+            [['status'], 'boolean'],
             [['name', 'email', 'phone', 'address'], 'string', 'max' => 255],
         ];
     }
@@ -49,16 +50,15 @@ class Order extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'qty' => 'Qty',
-            'sum' => 'Sum',
-            'status' => 'Status',
             'name' => 'Name',
-            'email' => 'Email',
+            'email' => 'E-mail',
             'phone' => 'Phone',
             'address' => 'Address',
         ];
+    }
+	
+	public function getOrderItems()
+	{
+		return $this->hasMany(OrderItems::className(), ['order_id' => 'id']);
     }
 }

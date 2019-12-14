@@ -7,8 +7,9 @@
 				<tr>
 					<th>Photo</th>
 					<th>Name</th>
-					<th>Qty</th>
+					<th>Quantity</th>
 					<th>Price</th>
+					<th>Summary</th>
 					<th><span class="glyphicon glyphicon-remove"
 					          aria-hidden="true"></span>
 					</th>
@@ -30,6 +31,7 @@
 					</td>
 					<td><?=$item['qty']?></td>
 					<td><?=$item['price']?></td>
+					<td><?= $item['qty'] * $item['price'] ?></td>
 					<td>
 						<span class="glyphicon glyphicon-remove text-danger del-item"
 						      data-id="<?=$id?>"
@@ -40,10 +42,10 @@
 				<tr>
 					<td colspan="2">Total Items:</td>
 					<td><?=$session['cart.qty']?></td>
-					<td colspan="2"></td>
+					<td colspan="3"></td>
 				</tr>
 				<tr>
-					<td colspan="3">Total Cost:</td>
+					<td colspan="4">Total Cost:</td>
 					<td><?=$session['cart.sum']?></td>
 					<td></td>
 				</tr>

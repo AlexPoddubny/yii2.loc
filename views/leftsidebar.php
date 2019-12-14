@@ -31,10 +31,5 @@
 				<b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
 			</div>
 		</div><!--/price-range-->
-		
-		<div class="shipping text-center"><!--shipping-->
-			<img src="images/home/shipping.jpg" alt="" />
-		</div><!--/shipping-->
-	
 	</div>
 </div>
