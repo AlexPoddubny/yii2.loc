@@ -13,6 +13,7 @@ function showCart(cart){
     $('#cart .modal-body').html(cart);
     $('#cart').modal();
 }
+
 function showOrder(cart){
     $('#order').html(cart);
     $('#order').load();
@@ -34,7 +35,6 @@ function getCart(){
     });
     return false;
 }
-
 
 $('#cart .modal-body').on('click', '.del-item', function(){
     var id = $(this).data('id');
