@@ -7,7 +7,7 @@
 			<?php
 				include __DIR__ . '/../leftsidebar.php';
 			?>
-			<div class="col-sm-9 padding-right">
+			<div class="col-sm-9 padding-right" id="order">
 				<h1>
 					<?= Html::encode($this->title) ?>
 				</h1>
