@@ -117,6 +117,10 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="<?= Url::home() ?>"
 								       class="active">Home</a></li>
+								<li><a href="<?= Url::to(['/admin/order']) ?>">
+										Orders List
+									</a>
+								</li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										<li><a href="shop.html">Products</a></li>
@@ -149,9 +153,9 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-	
+	<div class="container">
 	<?= $content ?>
-	
+	</div>
 	<footer id="footer"><!--Footer-->
 		<div class="footer-bottom">
 			<div class="container">

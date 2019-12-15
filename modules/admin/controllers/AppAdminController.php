@@ -4,11 +4,11 @@
 	namespace app\modules\admin\controllers;
 	
 	
+	use app\controllers\AppController;
 	use yii\filters\AccessControl;
-	use yii\web\Controller;
 	
 	class AppAdminController
-		extends Controller
+		extends AppController
 	{
 		public function behaviors()
 		{
