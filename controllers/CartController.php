@@ -69,6 +69,14 @@
 				if ($order->save()){
 					$this->saveOrderItems($session['cart'], $order->id);
 					Yii::$app->session->setFlash('success', 'Order is placed');
+					Yii::$app->mailer
+						->compose(
+							'order',
+							['session' => $session])
+						->setFrom(['test@gmail.com' => 'yii2.loc'])
+						->setTo($order->email)
+						->setSubject('Order')
+						->send();
 					$session->remove('cart');
 					$session->remove('cart.qty');
 					$session->remove('cart.sum');
