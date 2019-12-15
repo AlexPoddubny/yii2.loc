@@ -76,7 +76,15 @@
 					<div class="col-md-8 clearfix">
 						<div class="shop-menu clearfix pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
+								<?php if (!Yii::$app->user->isGuest):?>
+									<li>
+										<a href="<?=Url::to(['/site/logout'])?>">
+											<i class="fa fa-user"></i>
+											<?=Yii::$app->user->identity['username']?>
+											&nbsp;(Logout)
+										</a>
+									</li>
+								<?php endif;?>
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li>
