@@ -107,7 +107,12 @@
 										Cart
 									</a>
 								</li>
-								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+								<li>
+									<a href="<?=Url::to(['/admin'])?>">
+										<i class="fa fa-lock"></i>
+										Login
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
