@@ -42,5 +42,10 @@ YiiAsset::register($this);
             'address',
         ],
     ]) ?>
+	
+	<?php
+		$items = $model->orderItems;
+		\app\controllers\AppController::consoleDump($items);
+	?>
 
 </div>
