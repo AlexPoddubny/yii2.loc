@@ -35,7 +35,16 @@ YiiAsset::register($this);
             'updated_at',
             'qty',
             'sum',
-            'status',
+//            'status',
+            [
+	            'attribute' => 'status',
+	            'value' => function($data){
+		            return !$data->status
+			            ? '<span class="text-danger">Active</span>'
+			            : '<span class="text-success">Completed</span>';
+	            },
+	            'format' => 'html',
+			],
             'name',
             'email:email',
             'phone',
@@ -44,8 +53,37 @@ YiiAsset::register($this);
     ]) ?>
 	
 	<?php
-		$items = $model->orderItems;
-		\app\controllers\AppController::consoleDump($items);
+//		$items = $model->orderItems;
+//		\app\controllers\AppController::consoleDump($items);
 	?>
+
+	<div class="table-responsive">
+		<table class="table table-hover table-stripped">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Summary</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php foreach ($model->orderItems as $item) : ?>
+				<tr>
+					<td><?=Html::a(
+							$item['name'],
+							['/product/view',
+								'id' => $item['product_id']],
+							['target' => '_blank']
+						) ?>
+					</td>
+					<td><?=$item['qty_item']?></td>
+					<td><?=$item['price']?></td>
+					<td><?= $item['sum_item']?></td>
+				</tr>
+			<?php endforeach;?>
+			</tbody>
+		</table>
+	</div>
 
 </div>
