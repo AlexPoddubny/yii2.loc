@@ -3,6 +3,7 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "order_items".
@@ -15,7 +16,8 @@ use Yii;
  * @property int $qty_item
  * @property float $sum_item
  */
-class OrderItems extends \yii\db\ActiveRecord
+class OrderItems
+	extends ActiveRecord
 {
     /**
      * {@inheritdoc}

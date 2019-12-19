@@ -115,29 +115,33 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="<?= Url::home() ?>"
-								       class="active">Home</a></li>
-								<li><a href="<?= Url::to(['/admin/order']) ?>">
-										Orders List
+								<li><a href="<?=Url::to(['/admin'])?>"
+								       class="active">Home</a>
+								</li>
+								<li class="dropdown">
+									<a href="#">Category<i class="fa fa-angle-down"></i>
 									</a>
-								</li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
-										<li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="login.html">Login</a></li>
+										<li>
+											<a href="<?=Url::to(['category/'])?>">Categories List</a>
+										</li>
+										<li>
+											<a href="<?=Url::to(['category/create'])?>">Add category</a>
+										</li>
 									</ul>
 								</li>
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown">
+									<a href="#">Products<i class="fa fa-angle-down"></i>
+									</a>
 									<ul role="menu" class="sub-menu">
-										<li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
+										<li>
+											<a href="<?=Url::to(['product/index'])?>">Products List</a>
+										</li>
+										<li>
+											<a href="<?=Url::to(['product/create'])?>">Add product</a>
+										</li>
 									</ul>
 								</li>
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Contact</a></li>
 							</ul>
 						</div>
 					</div>
