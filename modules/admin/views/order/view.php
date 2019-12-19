@@ -14,7 +14,7 @@ YiiAsset::register($this);
 ?>
 <div class="order-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Order №&nbsp;<?= Html::encode($model->id) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -30,7 +30,7 @@ YiiAsset::register($this);
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+//            'id',
             'created_at',
             'updated_at',
             'qty',
@@ -38,11 +38,9 @@ YiiAsset::register($this);
 //            'status',
             [
 	            'attribute' => 'status',
-	            'value' => function($data){
-		            return !$data->status
+	            'value' => !$model->status
 			            ? '<span class="text-danger">Active</span>'
-			            : '<span class="text-success">Completed</span>';
-	            },
+			            : '<span class="text-success">Completed</span>',
 	            'format' => 'html',
 			],
             'name',
