@@ -68,6 +68,9 @@ class CategoryController
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+	        Yii::$app->session->setFlash(
+	        	'success',
+		        'New category "<strong>' . $model->name . '</strong>" was created');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

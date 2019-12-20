@@ -1,6 +1,7 @@
 <?php
 	
 	use app\modules\admin\models\Category;
+	use app\widgets\MenuWidget;
 	use yii\helpers\ArrayHelper;
 	use yii\helpers\Html;
 	use yii\widgets\ActiveForm;
@@ -15,9 +16,19 @@
     <?php $form = ActiveForm::begin(); ?>
 
     <?php //echo $form->field($model, 'parent_id')->textInput() ?>
-    <?= $form->field($model, 'parent_id')
-	    ->dropDownList(ArrayHelper::map(Category::find()->all(), 'id', 'name'));
+    <?php //echo $form->field($model, 'parent_id')
+	    //->dropDownList(ArrayHelper::map(Category::find()->all(), 'id', 'name'));
     ?>
+	<div class="form-group field-category-parent_id">
+		<label class="control-label" for="category-parent_id">Parent ID</label>
+		<select id="category-parent_id" class="form-control" name="Category[parent_id]">
+			<option value="0">Single category</option>
+			<?=MenuWidget::widget([
+				'tpl' => 'select',
+				'model' => $model,
+			])?>
+		</select>
+	</div>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

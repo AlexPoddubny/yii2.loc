@@ -15,6 +15,7 @@
 		public $tpl;
 		public $data;
 		public $tree;
+		public $model;
 		public $menuHtml;
 		
 		public function init()
@@ -29,14 +30,17 @@
 		public function run()
 		{
 			//get cache
-			$menu = Yii::$app->cache->get('menu');
-			if ($menu) {
-				$this->menuHtml = $menu;
-			} else {
-				$this->data = Category::find()->indexBy('id')->asArray()->all();
-				$this->tree = $this->getTree();
-				$this->menuHtml = $this->getMenuHtml($this->tree);
-				//set cache
+			if ($this->tpl == 'menu.php'){
+				$menu = Yii::$app->cache->get('menu');
+				if ($menu) {
+					return $menu;
+				}
+			}
+			$this->data = Category::find()->indexBy('id')->asArray()->all();
+			$this->tree = $this->getTree();
+			$this->menuHtml = $this->getMenuHtml($this->tree);
+			//set cache
+			if ($this->tpl == 'menu.php') {
 				Yii::$app->cache->set('menu', $this->menuHtml, 60);
 			}
 			//echo AppController::debug($this->tree);
@@ -59,18 +63,18 @@
 			return $tree;
 		}
 		
-		protected function catToTemplate($category)
+		protected function catToTemplate($category, $tab)
 		{
 			ob_start();
 			include __DIR__ . '/menu_tpl/' . $this->tpl;
 			return ob_get_clean();
 		}
 		
-		protected function getMenuHtml($tree)
+		protected function getMenuHtml($tree, $tab = '')
 		{
 			$str = '';
 			foreach ($tree as $category){
-				$str .= $this->catToTemplate($category);
+				$str .= $this->catToTemplate($category, $tab);
 			}
 			
 			return $str;
