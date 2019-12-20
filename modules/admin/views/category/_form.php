@@ -15,10 +15,6 @@
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php //echo $form->field($model, 'parent_id')->textInput() ?>
-    <?php //echo $form->field($model, 'parent_id')
-	    //->dropDownList(ArrayHelper::map(Category::find()->all(), 'id', 'name'));
-    ?>
 	<div class="form-group field-category-parent_id">
 		<label class="control-label" for="category-parent_id">Parent ID</label>
 		<select id="category-parent_id" class="form-control" name="Category[parent_id]">

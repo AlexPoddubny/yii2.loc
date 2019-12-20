@@ -72,7 +72,7 @@ YiiAsset::register($this);
 							$item['name'],
 							['/product/view',
 								'id' => $item['product_id']],
-							['target' => '_blank']
+							['target' => '_blank',]
 						) ?>
 					</td>
 					<td><?=$item['qty_item']?></td>
