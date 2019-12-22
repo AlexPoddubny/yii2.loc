@@ -13,8 +13,18 @@
 ?>
 
 <div class="product-form">
+	
+	<?php
+//		\app\controllers\AppController::debug($model);
+	?>
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+    	'options' =>
+		    [
+    		    'enctype' => 'multipart/form-data'
+	        ]
+        ]);
+    ?>
 
 	<div class="form-group field-product-category_id">
 		<label class="control-label" for="product-category_id">Category</label>
@@ -30,13 +40,9 @@
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(),[
-	    'editorOptions' => ElFinder::ckeditorOptions('elfinder', []),
-//		    [
-//		    'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-//		    'inline' => false, //по умолчанию false
-//		    'editorOptions' =>
-//	    ],
-    ]); ?>
+	        'editorOptions' => ElFinder::ckeditorOptions('elfinder', []),
+        ]);
+    ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
@@ -44,7 +50,12 @@
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
+    <?= $form->field($model, 'gallery[]')
+	    ->fileInput([
+    		'multiple' => true,
+	        'accept' => 'image/*'
+    ]) ?>
 
     <?= $form->field($model, 'hit')->checkbox([ '0', '1', ]) ?>
 
