@@ -33,8 +33,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'category_id',
-            'name',
+//            'category_id',
+	        [
+		        'attribute'	=> 'category_id',
+		        'value' => function($data){
+			        return Html::a(
+				        $data->category->name,
+				        [
+					        '/category/view',
+					        'id' => $data->category->id,
+				        ],
+				        ['target' => '_blank']
+			        );
+		        },
+		        'format' => 'html',
+	        ],
+	        'name',
             'content:html',
             'price',
             'keywords',

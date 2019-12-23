@@ -40,4 +40,13 @@
 				$_SESSION['cart'][$id]['price'];
 			unset($_SESSION['cart'][$id]);
 		}
+		
+		public function behaviors()
+		{
+			return [
+				'image' => [
+					'class' => 'rico\yii2images\behaviors\ImageBehave',
+				]
+			];
+		}
 	}

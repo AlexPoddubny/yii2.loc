@@ -7,14 +7,17 @@
 <section>
 	<div class="container">
 		<div class="row">
-			<?php include __DIR__ . '/../leftsidebar.php'; ?>
+			<?php
+				include __DIR__ . '/../leftsidebar.php';
+				$mainImg = $product->getImage();
+				$gallery = $product->getImages();
+			?>
 			<div class="col-sm-9 padding-right">
 				<div class="product-details"><!--product-details-->
 					<div class="col-sm-5">
 						<div class="view-product">
-							<?= Html::img(
-									"@web/images/products/{$product->img}",
-									['alt' => $product->name]
+							<?= Html::img($mainImg->getUrl(),
+								['alt' => $product->name]
 							)?>
 							<h3>ZOOM</h3>
 						</div>
@@ -22,23 +25,19 @@
 							
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner">
-								<div class="item active">
-									<a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-									<a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-									<a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-								</div>
-								<div class="item">
-									<a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-									<a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-									<a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-								</div>
-								<div class="item">
-									<a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-									<a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-									<a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-								</div>
-							
+							<?php $count = count($gallery); $i = 0;?>
+							<?php foreach ($gallery as $img):?>
+								<?php if ($i % 3 == 0):?>
+									<div class="item<?php if ($i == 0) echo ' active'?>">
+								<?php endif;?>
+									<?= Html::img($img->getUrl('85x84'))?>
+								<?php $i++; ?>
+								<?php if ($i % 3 == 0 || $i == $count):?>
+									</div>
+								<?php endif;?>
+							<?php endforeach;?>
 							</div>
+							
 							
 							<!-- Controls -->
 							<a class="left item-control" href="#similar-product" data-slide="prev">
