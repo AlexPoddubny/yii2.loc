@@ -19,7 +19,7 @@
 					'name' => $product->name,
 					'price' => $product->price,
 					'qty' => $qty,
-					'img' => $product->img
+					'img' => $product->getImage()->getUrl('x50')
 				];
 			}
 			$_SESSION['cart.qty'] = isset($_SESSION['cart.qty'])
